@@ -14,6 +14,9 @@ Use the Go, gomobile/gobind, Java, and Android NDK versions specified by the cor
 Go 1.26.10, gomobile/gobind v0.1.13, OpenJDK 17, and NDK r28. Install the mobile
 tools with `make lib_install` in the core checkout and put `$(go env GOPATH)/bin`
 on PATH. Set `JAVA_HOME`, `ANDROID_HOME`, and `ANDROID_NDK_HOME` explicitly.
+The native builder enforces JDK 17. Run Gradle lint with JDK 21: its bundled
+JavaDoc analyzer calls `List.removeLast()`, which is absent from JDK 17. Select
+that JVM for the Gradle command only; the native build still uses JDK 17.
 
 Commit the custom core before building. From this Android checkout:
 
