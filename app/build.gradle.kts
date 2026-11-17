@@ -181,9 +181,11 @@ dependencies {
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
 
     // libbox
-    "playImplementation"(files("libs/libbox.aar"))
-    "otherImplementation"(files("libs/libbox.aar"))
-    "otherLegacyImplementation"(files("libs/libbox-legacy.aar"))
+    val libboxAar = providers.gradleProperty("libboxAar").orElse("libs/libbox.aar")
+    val libboxLegacyAar = providers.gradleProperty("libboxLegacyAar").orElse("libs/libbox-legacy.aar")
+    "playImplementation"(files(libboxAar))
+    "otherImplementation"(files(libboxAar))
+    "otherLegacyImplementation"(files(libboxLegacyAar))
 
     // API level specific versions
     val lifecycleVersion24 = "2.11.0"
