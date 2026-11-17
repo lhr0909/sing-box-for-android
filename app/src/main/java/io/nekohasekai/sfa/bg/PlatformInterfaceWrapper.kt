@@ -8,6 +8,8 @@ import android.os.Process
 import android.provider.Settings
 import android.system.OsConstants
 import android.util.Log
+import io.nekohasekai.libbox.AutoRedirectHandler
+import io.nekohasekai.libbox.AutoRedirectSession
 import io.nekohasekai.libbox.BridgeOptions
 import io.nekohasekai.libbox.BridgeSession
 import io.nekohasekai.libbox.ConnectionOwner
@@ -49,6 +51,12 @@ interface PlatformInterfaceWrapper : PlatformInterface {
 
     override fun openTun(options: TunOptions): Int {
         error("android: tun inbound requires VPN service")
+    }
+
+    override fun usePlatformAutoRedirect(): Boolean = false
+
+    override fun createAutoRedirect(options: ByteArray, handler: AutoRedirectHandler): AutoRedirectSession {
+        error("android: platform auto redirect is unavailable")
     }
 
     override fun findConnectionOwner(

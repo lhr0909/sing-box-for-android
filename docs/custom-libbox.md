@@ -5,6 +5,10 @@ select that core automatically. Keep the Android revision compatible with the
 core's `clients/android` gitlink. No client UI change is needed for legacy Snell
 JSON configurations once the core implements them.
 
+The pinned client predates the core's platform auto-redirect callbacks. Its
+platform wrapper explicitly reports that capability as unavailable; this keeps
+the existing service behavior while satisfying the generated binding interface.
+
 Use the Go, gomobile/gobind, Java, and Android NDK versions specified by the core's
 `Makefile` and `.github/workflows/build.yml`. At the starting revision these are
 Go 1.26.10, gomobile/gobind v0.1.13, OpenJDK 17, and NDK r28. Install the mobile
