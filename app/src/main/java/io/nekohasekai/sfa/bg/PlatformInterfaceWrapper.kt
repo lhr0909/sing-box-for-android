@@ -57,6 +57,12 @@ interface PlatformInterfaceWrapper : PlatformInterface {
         error("android: tun inbound requires VPN service")
     }
 
+    override fun usePlatformAutoRedirect(): Boolean = false
+
+    override fun createAutoRedirect(options: ByteArray, handler: AutoRedirectHandler): AutoRedirectSession {
+        error("android: platform auto redirect is unavailable")
+    }
+
     override fun findConnectionOwner(
         ipProtocol: Int,
         sourceAddress: String,
