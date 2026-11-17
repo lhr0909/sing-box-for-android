@@ -34,6 +34,8 @@ The standard core builder may also copy AARs into a sibling client's `app/libs`
 when that directory exists. The Gradle property above selects the recorded
 artifact explicitly. Relative property paths resolve from the `app` directory.
 Without these properties the original `app/libs` paths remain the defaults.
+With an explicit override, packaging preserves `libbox.so` bytes instead of
+stripping the recorded custom library again, so the AAR/APK comparison is exact.
 Use `-PlibboxLegacyAar=/path/to/artifacts/libbox-legacy.aar` for `otherLegacy`.
 
 The default native target is ARM64 only. Use `android` as the fourth script

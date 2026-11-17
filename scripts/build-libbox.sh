@@ -16,7 +16,10 @@ if [[ "$output_dir" == "$core_dir" || "$output_dir" == "$core_dir/"* ]]; then
     echo "Keep artifacts outside the core checkout." >&2
     exit 2
 fi
-git -C "$core_dir" diff --quiet HEAD --
+if ! git -C "$core_dir" diff --quiet HEAD --; then
+    echo "Commit the core's tracked source changes before building a traceable library." >&2
+    exit 1
+fi
 if [[ -n "$(git -C "$core_dir" ls-files --others --exclude-standard)" ]]; then
     echo "Commit the core sources before building a traceable library." >&2
     exit 1

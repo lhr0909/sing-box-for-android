@@ -157,6 +157,10 @@ android {
     packaging {
         jniLibs {
             useLegacyPackaging = true
+            if (providers.gradleProperty("libboxAar").isPresent || providers.gradleProperty("libboxLegacyAar").isPresent) {
+                // Preserve the recorded custom AAR's native bytes for verification.
+                keepDebugSymbols += "**/libbox.so"
+            }
         }
     }
 
